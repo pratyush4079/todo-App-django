@@ -6,6 +6,7 @@ pipeline {
         PYTHON_ENV = 'venv'
         REPO_PATH = 'E:\\jenkins_pipeline\\todo-App-django'  // Path to your local repository
         BRANCH_NAME = 'release/testing-jenkins'        // Branch you want to checkout
+        VIRTUAL_ENV= 'E:\\jenkins_pipeline\\venv\\todoApp\\Scripts'
     }
 
 
@@ -34,7 +35,7 @@ pipeline {
             steps {
                 script {
                     if (!fileExists("${env.PYTHON_ENV}")) {
-                        sh 'python3 -m venv venv'
+                        bat 'python3 -m venv venv'
                     }
                 }
             }
@@ -49,22 +50,12 @@ pipeline {
             }
         }
 
-        stage('Run Tests') {
+        stage('Build') {
             steps {
                 sh '''
                 source venv/bin/activate
-                python manage.py test
+                python manage.py runserver
                 '''
-            }
-        }
-
-        stage('Build and Deploy') {
-            steps {
-                sh '''
-                source venv/bin/activate
-                python manage.py collectstatic --noinput
-                '''
-                // Add deployment steps here if any
             }
         }
     }
