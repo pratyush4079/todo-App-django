@@ -16,6 +16,7 @@ pipeline {
                     // Navigate to the repository directory
                     dir(env.REPO_PATH) {
                         // Checkout the specified branch
+                        bat "git config --global --add safe.directory ${REPO_PATH}"
                         bat "git checkout ${BRANCH_NAME}" // for windows , sh doesnt work
                     }
                 }
