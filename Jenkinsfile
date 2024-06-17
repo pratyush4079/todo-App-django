@@ -10,21 +10,21 @@ pipeline {
 
 
     stages {
-         stage('Configure Git Safe Directory') {
-            steps {
-                script {
-                    // Add the repository directory to the safe list
-                    bat "git config --global --add safe.directory ${REPO_PATH}"
-                }
-            }
-        }
+        //  stage('Configure Git Safe Directory') {
+        //     steps {
+        //         script {
+        //             // Add the repository directory to the safe list
+        //             bat "git config --global --add safe.directory ${REPO_PATH}"
+        //         }
+        //     }
+        // }
        stage('Checkout') {
             steps {
                 script {
                     // Navigate to the repository directory
                     dir(env.REPO_PATH) {
                         // Checkout the specified branch
-                        bat "git checkout ${BRANCH_NAME}" // for windows , sh doesnt work
+                        bat "dir" // for windows , sh doesnt work
                     }
                 }
             }
