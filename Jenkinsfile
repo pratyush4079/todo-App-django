@@ -7,7 +7,7 @@ pipeline {
         REPO_PATH = 'E:\\jenkins_pipeline\\todo-App-django'  // Path to your local repository
         BRANCH_NAME = 'release/testing-jenkins'        // Branch you want to checkout
     }
-    }
+
 
     stages {
        stage('Checkout') {
@@ -66,3 +66,4 @@ pipeline {
             cleanWs()
         }
     }
+}
