@@ -16,7 +16,7 @@ pipeline {
                     // Navigate to the repository directory
                     dir(env.REPO_PATH) {
                         // Checkout the specified branch
-                        sh "git checkout ${BRANCH_NAME}"
+                        bat "git checkout ${BRANCH_NAME}" // for windows , sh doesnt work
                     }
                 }
             }
