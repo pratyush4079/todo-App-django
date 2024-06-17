@@ -4,7 +4,7 @@ pipeline {
     environment {
         // Define any environment variables here
         PYTHON_ENV = 'venv'
-        REPO_PATH = 'E:\jenkins_pipeline\todo-App-django'  // Path to your local repository
+        REPO_PATH = 'E:\\jenkins_pipeline\\todo-App-django'  // Path to your local repository
         BRANCH_NAME = 'release/testing-jenkins'        // Branch you want to checkout
     }
     }
