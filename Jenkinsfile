@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'release/testing-jenkins', url: 'https://github.com/pratyush4079/todo-App-django/branches'
+                git branch: 'release/testing-jenkins', url: 'https://github.com/pratyush4079/todo-App-django'
             }
         }
 
