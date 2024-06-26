@@ -13,7 +13,7 @@ pipeline {
                bat '''
                 REM Install dependencies
                 python -m venv testing
-                .\testing\Scripts\activate
+                .\\testing\\Scripts\\activate
                 pip install -r requirements.txt
                 '''
             }
