@@ -1,67 +1,47 @@
 pipeline {
     agent any
 
-    environment {
-  
-        PYTHON_ENV = 'venv'
-        REPO_PATH = 'E:\\jenkins_pipeline\\todo-App-django'  
-        BRANCH_NAME = 'release/testing-jenkins'        // Branch you want to checkout
-        VIRTUAL_ENV= 'E:\\jenkins_pipeline\\venv\\todoApp\\Scripts'
-    }
-
-
     stages {
-        //  stage('Configure Git Safe Directory') {
-        //     steps {
-        //         script {
-        //             // Add the repository directory to the safe list
-        //             bat "git config --global --add safe.directory ${REPO_PATH}"
-        //         }
-        //     }
-        // }
-       stage('Checkout') {
+        stage('Checkout') {
             steps {
-                script {
-                    dir(env.REPO_PATH) {
-                        bat "dir" 
-                    }
-                }
+                git branch: 'release/testing-jenkins', url: 'https://github.com/pratyush4079/todo-App-django/branches'
             }
         }
 
-        stage('Setup Python Environment') {
-            steps {
-                script {
-                    if (!fileExists("${env.PYTHON_ENV}")) {
-                        bat "echo dir"
-                        // bat 'python -m venv todoApp'
-                    }
-                }
-            }
-        }
-
-        stage('Install Dependencies') {
+        stage('Setup') {
             steps {
                 sh '''
-                source venv/bin/activate
+                # Install dependencies
                 pip install -r requirements.txt
                 '''
             }
         }
 
-        stage('Build') {
+        stage('Run Migrations') {
             steps {
                 sh '''
-                source venv/bin/activate
-                python manage.py runserver
+                # Apply migrations
+                python manage.py migrate
                 '''
             }
         }
-    }
 
-    post {
-        always {
-            cleanWs()
+        stage('Run Tests') {
+            steps {
+                sh '''
+                # Run tests
+                python manage.py test
+                '''
+            }
+        }
+
+        stage('Run Server') {
+            steps {
+                sh '''
+                # Run the Django server
+                python manage.py runserver 0.0.0.0:8000 &
+                '''
+            }
         }
     }
 }
