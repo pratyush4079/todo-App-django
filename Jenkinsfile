@@ -33,7 +33,7 @@ pipeline {
             steps {
                 script {
                     if (!fileExists("${env.PYTHON_ENV}")) {
-                        bat "echo $dir"
+                        bat "echo dir"
                         // bat 'python -m venv todoApp'
                     }
                 }
