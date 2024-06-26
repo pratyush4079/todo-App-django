@@ -8,14 +8,14 @@ pipeline {
             }
         }
 
-        stage('Setup') {
-            steps {
-               bat '''
-                REM Install dependencies
-                pip install -r requirements.txt
-                '''
-            }
-        }
+        // stage('Setup') {
+        //     steps {
+        //        bat '''
+        //         REM Install dependencies
+        //         pip install -r requirements.txt
+        //         '''
+        //     }
+        // }
 
         stage('Run Migrations') {
             steps {
