@@ -12,7 +12,7 @@ pipeline {
             steps {
                bat '''
                 REM Install dependencies
-                python -m venv testing
+                C:\\Users\\PraTyush\\AppData\\Local\\Programs\\Python\\Python312\\Scripts\\python -m venv testing
                 .\\testing\\Scripts\\activate
                 pip install -r requirements.txt
                 '''
