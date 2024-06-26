@@ -12,7 +12,8 @@ pipeline {
             steps {
                bat '''
                 REM Install dependencies
-                pip install --upgrade pip
+                python -m venv testing
+                .\testing\Scripts\activate
                 pip install -r requirements.txt
                 '''
             }
