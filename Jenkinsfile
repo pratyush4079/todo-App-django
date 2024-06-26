@@ -10,8 +10,9 @@ pipeline {
 
         stage('Setup') {
             steps {
-                sh '''
-                # Install dependencies
+               bat '''
+                REM Install dependencies
+                pip install --upgrade pip
                 pip install -r requirements.txt
                 '''
             }
